@@ -32,16 +32,16 @@
 Muse-UI is available as an [npm package](https://www.npmjs.com/package/muse-ui)
 
 ```bash
-npm install muse-ui -S
-yarn add muse-ui
+npm install @ewei/muse-ui -S
+yarn add @ewei/muse-ui
 ```
 
 ## Usage
 
 ```javascript
 import Vue from 'vue'
-import MuseUI from 'muse-ui'
-import 'muse-ui/dist/muse-ui.css'
+import MuseUI from '@ewei/muse-ui'
+import '@ewei/muse-ui/dist/muse-ui.css'
 Vue.use(MuseUI)
 ```
 

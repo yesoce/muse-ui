@@ -6,7 +6,11 @@ import postcss from 'rollup-plugin-postcss';
 import replace from 'rollup-plugin-replace';
 import packageJson from './package.json';
 
-const { name, version } = packageJson;
+let { name, version } = packageJson;
+if (name && name.indexOf('/') > -1) {
+  let arr = name.split('/');
+  name = arr[arr.length-1];
+}
 const banner = `/* ${name} myron.liu version ${version} */`;
 const plugins = [
   postcss({ extensions: ['.less'], extract: `dist/${name}.css` }),
