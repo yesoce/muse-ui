@@ -25,6 +25,14 @@ const plugins = [
       ],
       'stage-2',
       'es2015-rollup'
+    ],
+    plugins: [
+      [
+        'babel-plugin-transform-require-ignore',
+        {
+          'extensions': ['.css', '.sass']
+        }
+      ]
     ]
   }),
   replace({
