@@ -1,5 +1,5 @@
 <template>
-<div class="mu-text-field-label" :class="labelClass">
+<div class="mu-text-field-label" :title="title" :class="labelClass">
   <slot></slot>
 </div>
 </template>
@@ -21,6 +21,9 @@ export default {
     },
     focusClass: {
       type: [String, Object, Array]
+    },
+    title: {
+      type: String
     }
   },
   computed: {

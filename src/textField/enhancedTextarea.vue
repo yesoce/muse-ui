@@ -4,7 +4,7 @@
     <textarea ref="textarea" :name="name" class="mu-text-field-input mu-text-field-textarea"
       :class="normalClass" :value="value" @change="handleChange"
       @input="handleInput" @focus="handleFocus" @blur="handleBlur"
-      :placeholder="placeholder" :disabled="disabled" :required="required"></textarea>
+      :placeholder="placeholder" :disabled="disabled" :required="required" @paste="handlePaste"></textarea>
   </div>
 </template>
 
@@ -66,6 +66,9 @@ export default {
     },
     handleBlur (e) {
       this.$emit('blur', e)
+    },
+    handlePaste (e) {
+      this.$emit('paste', e)
     },
     focus () {
       const { textarea } = this.$refs

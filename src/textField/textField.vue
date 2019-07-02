@@ -2,13 +2,13 @@
   <div class="mu-text-field" :class="textFieldClass" :style="isFocused ? errorStyle : {}">
     <icon  v-if="icon" class="mu-text-field-icon" :class="iconClass" :value="icon"></icon>
     <div @click="handleLabelClick" ref="content" class="mu-text-field-content">
-      <text-field-label v-if="label" :float="float" :focus="isFocused" :normalClass="labelClass" :focusClass="labelFocusClass">{{label}}</text-field-label>
+      <text-field-label v-if="label" :title="label" :float="float" :focus="isFocused" :normalClass="labelClass" :focusClass="labelFocusClass">{{label}}</text-field-label>
       <text-field-hint v-if="hintText" :text="hintText" :show="showHint" :class="hintTextClass"></text-field-hint>
       <slot>
-        <input v-if="!multiLine" ref="input" :name="name" :type="type" :value="inputValue"
+        <input v-if="!multiLine" ref="input" :name="name" :type="type" :value="inputValue" :maxlength="maxLength"
           :disabled="disabled" @change="handleChange" @focus="handleFocus" @input="handleInput" @blur="handleBlur"
-          :max="max" :min="min" class="mu-text-field-input" :class="inputClass" :required="required">
-        <enhanced-textarea :name="name" v-if="multiLine" ref="textarea" :normalClass="inputClass":value="inputValue" :disabled="disabled" :rows="rows" :rowsMax="rowsMax" @change="handleChange" @input="handleInput" @focus="handleFocus" @blur="handleBlur"></enhanced-textarea>
+          :max="max" :min="min" class="mu-text-field-input" :class="inputClass" :required="required" @paste="handlePaste">
+        <enhanced-textarea :name="name" v-if="multiLine" ref="textarea" :normalClass="inputClass" :value="inputValue" :maxlength="maxLength" :disabled="disabled" :rows="rows" :rowsMax="rowsMax" @change="handleChange" @input="handleInput" @focus="handleFocus" @blur="handleBlur" @paste="handlePaste"></enhanced-textarea>
       </slot>
       <underline v-if="underlineShow" :error="!!errorText" :disabled="disabled"
       :errorColor="errorColor" :focus="isFocused" :normalClass="underlineClass" :focusClass="underlineFocusClass"/>
@@ -177,6 +177,9 @@ export default {
     },
     handleLabelClick () {
       this.$emit('labelClick')
+    },
+    handlePaste (e) {
+      this.$emit('paste', e)
     },
     focus () {
       const { input, textarea } = this.$refs
