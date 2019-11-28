@@ -4,7 +4,8 @@
     <path d="M7 10l5 5 5-5z"/>
   </svg>
   <div class="mu-dropDown-menu-text" @click="handleOpen" :class="labelClass">
-    <div class="mu-dropDown-menu-text-overflow">{{label}}</div>
+    <div class="mu-dropDown-menu-text-overflow" v-if="label">{{label}}</div>
+    <div class="mu-dropDown-menu-text-overflow mu-dropDown-menu-placeholder" v-else>{{placeholder}}</div>
   </div>
   <div class="mu-dropDown-menu-line" :class="underlineClass"></div>
   <popover v-if="!disabled && $slots && $slots.default && $slots.default.length > 0" :scroller="scroller" :open="openMenu" :trigger="trigger" :anchorOrigin="anchorOrigin"  @close="handleClose">
@@ -78,7 +79,8 @@ export default {
     separator: {
       type: String,
       default: ','
-    }
+    },
+    placeholder: String
   },
   data () {
     return {
@@ -208,5 +210,11 @@ export default {
   html.pixel-ratio-3 & {
     .transform(scaleY(0.33));
   }
+}
+
+.mu-dropDown-menu-placeholder {
+  color: rgba(0, 0, 0, 0.38);
+  padding: 0 5px;
+  font-size: 13px;
 }
 </style>

@@ -6,7 +6,7 @@
   :value="inputValue instanceof Array ? inputValue.join('') : inputValue"
   :disabled="disabled" :errorText="errorText" :errorColor="errorColor">
   <input type="hidden" :name="name" :value="inputValue instanceof Array ? inputValue.join('') : inputValue">
-  <dropDown-menu :anchorEl="anchorEl" :scroller="scroller" @open="handleOpen"
+  <dropDown-menu :anchorEl="anchorEl" :scroller="scroller" @open="handleOpen" :placeholder="placeholder"
     @close="handleClose"  @change="handlehange" :value="inputValue" :disabled="disabled"
     :maxHeight="maxHeight" :autoWidth="autoWidth" :iconClass="dropDownIconClass"
     :multiple="multiple" :anchorOrigin="{vertical: 'bottom', horizontal: 'left'}"
@@ -100,7 +100,8 @@ export default {
     separator: {
       type: String,
       default: ','
-    }
+    },
+    placeholder: String
   },
   data () {
     let defaultVal = this.value
